@@ -25,6 +25,7 @@ describe 'VISA' do
     else
       print("Test failed")
     end
+    client_hq.close
   }
 
   it('should fill the fields with USD') {
