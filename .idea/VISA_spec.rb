@@ -15,20 +15,16 @@ describe 'VISA' do
     post 'http://kira-35411.herokuapp.com/api/payment', {:amount => 12, :currency => 'EUR', :fullName => 'John Smith', :firstName => 'John', :lastName => 'Smith', :cardNumber => '4032039575052396', :cardCVV => 123, :expireMonth => 3, :expireYear => 2021}
     expect_status(201)
 
-    #db_hq = MongoClient.new("heroku_9zz9bm0g:9qtdvpu61se7usccbh2n3jd103@ds059155.mongolab.com:59155/heroku_9zz9bm0g")
-    db_hq = MongoClient.new("ds059155.mongolab.com", 59155).db("heroku_9zz9bm0g")
-    if (auth = db_hq.authenticate(heroku_9zz9bm0g, "9qtdvpu61se7usccbh2n3jd103"))
-      coll = db_hq.collection("heroku_9zz9bm0g")
-      gateway_check = coll.find(:fields => ["gateway"]).last_document
-      if gateway_check == "Paypal"
-        print("Correct")
-      else
-        print("Test failed")
-      end
+    client_hq = Mongo::Client.new(['ds059155.mongolab.com:59155'], :database => 'heroku_9zz9bm0g', :user => 'heroku_9zz9bm0g', :password => '9qtdvpu61se7usccbh2n3jd103')
+    db_hq = client_hq.database
+    coll_hq = db_hq.collection(db_hq)
+    gateway_check = coll_hq.find(_id: 0, gateway: 1).sort({_id:-1}).limit(1)
+    
+    if gateway_check == "Paypal"
+      print("Correct")
     else
-      print("Authentication failed")
+      print("Test failed")
     end
-
   }
 
   it('should fill the fields with USD') {
