@@ -6,10 +6,9 @@ Before launching the project you need to install Bundler tools and run 'bundle i
 # Solution problems
 There are some problems I couldn't resolve.<br>
 1. Only VISA card works in tests. For others card API falls and returns 500 in response (although you can make the payments in web by hand). I can't imagine why this happen.<br>
-2. THB, HKD, SGD currencies don't work at all. I can't make the payments with it.<br>
-3. Can't find how to get only 1 field from db for checking the gateway.
-4. This phrase gateway_check = coll_hq.find().each { |row| puts row.enumerator }.next give me "StopIteration: iteration reached an end".<br>
-It seems DB is empty but I've already generated over 10 payments.
+2. THB, HKD, SGD currencies don't work at all. I can't make the payments with it (check Defects).<br>
+4. This phrase db_hq.collection_names returns something strange in name {"listCollections"=>1, "cursor"=>{}, "filter"=>{:name=>{"$not"=>/system.|\$/}}}.<br>
+So that's why I can't get right collection from DB using wrong collection name.
 
 # Defects
 1. For API http://kira-35411.herokuapp.com/api/payment with parametrs like \"amount\":\"2\",\"currency\":\"USD\",\"fullName\":\"qwe rty\",\"firstName\":\"qwe\",\"lastName\":\"rty\",\"cardNumber\":\"5110927212387377\",\"cardCVV\":\"123\",\"expireMonth\":\"3\",\"expireYear\":\"2021\"
