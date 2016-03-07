@@ -36,6 +36,8 @@ GEM
     rails_helper (2.2.2)
       rails_current (>= 1.0)
       rails_default_url_options (>= 1.0)
+    rake (10.4.2)
+    rdebug (0.1)
     rest-client (1.8.0-x64-mingw32)
       ffi (~> 1.9)
       http-cookie (>= 1.0.2, < 2.0)
@@ -54,6 +56,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    ruby-debug-ide (0.6.0)
+      rake (>= 0.8.1)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -68,7 +72,9 @@ DEPENDENCIES
   airborne
   mongo
   rails_helper
+  rdebug
   rspec (~> 3.4.0)
+  ruby-debug-ide
 
 BUNDLED WITH
    1.11.2
